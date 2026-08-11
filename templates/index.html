@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>corpo seeker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_result.css') }}">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div id="shapka">
+        <h1>X|______________CORPO_SEEKER_______________|X</h1>
+    </div>
+    <div id="search_container">
+        <form method="post" action="/search" id="search_form">
+            <div class="filter-group">
+                <label>Status</label>
+                <select name="status">
+                    <option value="A">Is Active</option>
+                    <option value="F">Is Not Active</option>
+                </select>
+            </div>
+
+            <!-- Is head office -->
+            <div class="filter-group">
+                <label>Is HQ</label>
+                <input type="checkbox" name="is_hq" value="true">
+                ignore this : <input type="checkbox" name="ignore_hq" value="true">
+            </div>
+
+
+            <!-- Creation date (from) -->
+            <div class="filter-group">
+                <label>Creation date (from)</label>
+                <input type="date" name="date_creation_from">
+                Any date : <input type="checkbox" name="ignore_date" value="true">
+            </div>
+
+            <!-- Size (trancheEffectifs) – multiple selects -->
+            <div class="filter-group" id="size-group">
+                <label>Size (trancheEffectifs) &gt;=</label>
+                <select name="trancheEffectifs">
+                    <option value="00">0</option>
+                    <option value="01">1-2</option>
+                    <option value="02">3-5</option>
+                    <option value="03">6-9</option>
+                    <option value="11">10-19</option>
+                    <option value="12">20-49</option>
+                    <option value="21">50-99</option>
+                    <option value="22">100-199</option>
+                    <option value="31">200-249</option>
+                    <option value="32">250-499</option>
+                    <option value="41">500-999</option>
+                    <option value="42">1000-1999</option>
+                    <option value="51">2000-4999</option>
+                    <option value="52">5000-9999</option>
+                    <option value="53">10k+</option>
+                </select>
+                Any size : <input type="checkbox" name="ignore_size" value="true">
+            </div>
+
+            <!-- Postal code – multiple number inputs -->
+            <div class="filter-group" id="postal-group">
+                <label>Postal code</label>
+                <input type="text" name="postal_code" placeholder="e.g. 91390" min="0" step="1"> | &lt;-- sql ijectable, use this for better search!
+            </div>
+
+            <!-- Commune code – multiple number inputs -->
+            <div class="filter-group" id="commune-group">
+                <label>Commune code</label>
+                <input type="text" name="comune_code" placeholder="e.g. 91254" min="0" step="1">
+                ignore comune code : <input type="checkbox" name="ignore_comune" value="true">
+                | &lt;-- sql ijectable, use this for better search!
+            </div>
+
+            <!-- Activity (activitePrincipale) -->
+            <div class="filter-group" id="activity-group">
+                <label>Activity (activitePrincipale)</label>
+                <select name="main_acctivity">
+                    <option value="01%"><strong>Culture et production animale, chasse et services annexes</strong></option>
+                    <option value="02%"><strong>Sylviculture et exploitation forestière</strong></option>
+                    <option value="03%"><strong>Pêche et aquaculture</strong></option>
+                    <option value="05%"><strong>Extraction de houille et de lignite</strong></option>
+                    <option value="06%"><strong>Extraction d'hydrocarbures</strong></option>
+                    <option value="07%"><strong>Extraction de minerais métalliques</strong></option>
+                    <option value="08%"><strong>Autres industries extractives</strong></option>
+                    <option value="09%"><strong>Activités de soutien aux industries extractives</strong></option>
+                    <option value="10%"><strong>Industries alimentaires</strong></option>
+                    <option value="11%"><strong>Fabrication de boissons</strong></option>
+                    <option value="12%"><strong>Fabrication de produits à base de tabac</strong></option>
+                    <option value="13%"><strong>Fabrication de textiles</strong></option>
+                    <option value="14%"><strong>Industrie de l"habillement</strong></option>
+                    <option value="15%"><strong>Fabrication de cuir, d'articles en cuir et de produits similaires dans d"autres matières</strong></option>
+                    <option value="16%"><strong>Travail du bois et fabrication d"articles en bois et en liège, à l"exception des meubles ; fabrication d"articles en</strong></option>
+                    <option value="17%"><strong>Industrie du papier et du carton</strong></option>
+                    <option value="18%"><strong>Imprimerie et reproduction d"enregistrements</strong></option>
+                    <option value="19%"><strong>Cokéfaction et raffinage</strong></option>
+                    <option value="20%"><strong>Industrie chimique</strong></option>
+                    <option value="21%"><strong>Industrie pharmaceutique</strong></option>
+                    <option value="22%"><strong>Fabrication de produits en caoutchouc et en plastique</strong></option>
+                    <option value="23%"><strong>Fabrication d'autres produits minéraux non métalliques</strong></option>
+                    <option value="24%"><strong>Métallurgie</strong></option>
+                    <option value="25%"><strong>Fabrication de produits métalliques, à l'exception des machines et des équipements</strong></option>
+                    <option value="26%"><strong>Fabrication de produits informatiques, électroniques et optiques</strong></option>
+                    <option value="27%"><strong>Fabrication d'équipements électriques</strong></option>
+                    <option value="28%"><strong>Fabrication de machines et équipements n.c.a.</strong></option>
+                    <option value="29%"><strong>Industrie automobile</strong></option>
+                    <option value="30%"><strong>Fabrication d'autres matériels de transport</strong></option>
+                    <option value="31%"><strong>Fabrication de meubles</strong></option>
+                    <option value="32%"><strong>Autres industries manufacturières</strong></option>
+                    <option value="33%"><strong>Réparation, entretien et installation de machines et d"équipements</strong></option>
+                    <option value="35%"><strong>Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné</strong></option>
+                    <option value="36%"><strong>Captage, traitement et distribution d'eau</strong></option>
+                    <option value="37%"><strong>Collecte et traitement des eaux usées</strong></option>
+                    <option value="38%"><strong>Collecte, valorisation et élimination des déchets</strong></option>
+                    <option value="39%"><strong>Activités de dépollution et autres activités de service de gestion des déchets</strong></option>
+                    <option value="41%"><strong>Construction de bâtiments résidentiels et non résidentiels</strong></option>
+                    <option value="42%"><strong>Génie civil</strong></option>
+                    <option value="43%"><strong>Travaux de construction spécialisés</strong></option>
+                    <option value="46%"><strong>Commerce de gros</strong></option>
+                    <option value="47%"><strong>Commerce de détail</strong></option>
+                    <option value="49%"><strong>Transports terrestres et transports par conduites</strong></option>
+                    <option value="50%"><strong>Transport par eau</strong></option>
+                    <option value="51%"><strong>Transports aériens</strong></option>
+                    <option value="52%"><strong>Entreposage et services auxiliaires des transports</strong></option>
+                    <option value="53%"><strong>Activités de poste et de courrier</strong></option>
+                    <option value="55%"><strong>Hébergement</strong></option>
+                    <option value="56%"><strong>Activités de service de restauration</strong></option>
+                    <option value="58%"><strong>Activités d'édition</strong></option>
+                    <option value="59%"><strong>Production de films cinématographiques, de vidéos et de programmes de télévision ; enregistrement sonore et</strong></option>
+                    <option value="60%"><strong>Activités de programmation, de diffusion, d"agence de presse et autres activités de distribution de contenu</strong></option>
+                    <option value="61%"><strong>Télécommunications</strong></option>
+                    <option value="62%"><strong>Programmation, conseil et autres activités informatiques</strong></option>
+                    <option value="63%"><strong>Infrastructure informatique, traitement de données et autres activités de service d"information</strong></option>
+                    <option value="64%"><strong>Activités de services financiers, hors assurance et fonds de pension</strong></option>
+                    <option value="65%"><strong>Assurance, réassurance et fonds de pension, à l'exclusion de la sécurité sociale obligatoire</strong></option>
+                    <option value="66%"><strong>Activités auxiliaires d'activités de services financiers et d'assurance</strong></option>
+                    <option value="68%"><strong>Activités immobilières</strong></option>
+                    <option value="69%"><strong>Activités juridiques et comptables</strong></option>
+                    <option value="70%"><strong>Activités des sièges sociaux et conseil de gestion</strong></option>
+                    <option value="71%"><strong>Activités d'architecture et d'ingénierie ; activités de contrôle et analyses techniques</strong></option>
+                    <option value="72%"><strong>Recherche et développement scientifique</strong></option>
+                    <option value="73%"><strong>Activités de publicité, d'études de marché et de relations publiques</strong></option>
+                    <option value="74%"><strong>Autres activités spécialisées, scientifiques et techniques</strong></option>
+                    <option value="75%"><strong>Activités vétérinaires</strong></option>
+                    <option value="77%"><strong>Activités de location et location-bail</strong></option>
+                    <option value="78%"><strong>Activités liées à l'emploi</strong></option>
+                    <option value="79%"><strong>Activités d'agence de voyage, de voyagiste, de service de réservation et de services connexes</strong></option>
+                    <option value="80%"><strong>Activités d'investigation et de sécurité</strong></option>
+                    <option value="81%"><strong>Activités de services pour les bâtiments et l"aménagement paysager</strong></option>
+                    <option value="82%"><strong>Activités de service de bureau, de soutien administratif et d"autre soutien aux entreprises</strong></option>
+                    <option value="84%"><strong>Administration publique et défense ; sécurité sociale obligatoire</strong></option>
+                    <option value="85%"><strong>Enseignement</strong></option>
+                    <option value="86%"><strong>Activités pour la santé humaine</strong></option>
+                    <option value="87%"><strong>Activités de soins en établissement résidentiel</strong></option>
+                    <option value="88%"><strong>Activités d'action sociale sans hébergement</strong></option>
+                    <option value="90%"><strong>Activités de création artistique et de spectacle</strong></option>
+                    <option value="91%"><strong>Bibliothèques, archives, musées et autres activités culturelles</strong></option>
+                    <option value="92%"><strong>Activités de jeux d'argent et de paris</strong></option>
+                    <option value="93%"><strong>Activités sportives et activités récréatives et de loisirs</strong></option>
+                    <option value="94%"><strong>Activités des organisations associatives</strong></option>
+                    <option value="95%"><strong>Réparation et entretien d'ordinateurs, de biens personnels et domestiques et d'automobiles et motocycles</strong></option>
+                    <option value="96%"><strong>Activités de services aux personnes</strong></option>
+                    <option value="97%"><strong>Activités des ménages en tant qu'employeurs de personnel domestique</strong></option>
+                    <option value="98%"><strong>Activités indifférenciées des ménages en tant que producteurs de biens et services pour usage propre</strong></option>
+                    <option value="99%"><strong>Activités des organisations et organismes extraterritoriaux</strong></option>
+                </select>
+            </div>
+
+
+
+            <button type="submit">search</button>
+        </form>
+
+    </div>
+    <h2>FOUND : {{ amount }}</h2>
+    <ol>
+        {% for company in corpos %}
+        <li>
+            <div class="result">
+                <p class="company_name">COMPANY NAME : {{ company.denominationUniteLegale }}</p>
+                <div class="result-flx">
+
+                    <div class="result-left">
+                        <p class="result_field">NAF25 : {{ company.activitePrincipaleEtablissement }}</p>
+                        <p class="result_field">NAF OLD : {{ company.activitePrincipaleNAF25Etablissement }}</p>
+                        <p class="result_field">number of emplyes : {{ company.trancheEffectifsEtablissement }}</p>
+                        <p class="result_field">POSTAL CODE : {{company.codePostalEtablissement }} </p>
+                        <p class="result_field">CUMUNE CODE : {{company.codeCommuneEtablissement}}</p>
+                    </div>
+
+                    <div class="result-right">
+                        <p class="result_field">IS ACTIVE : {% if company.etatAdministratifEtablissement == 'A' %} YES {% else %} NO {% endif %}</p>
+                        <p class="result_field">IS HQ : {{ company.etablissementSiege }}</p>
+                        <p class="result_field">SIREN : {{company.siren}}</p>
+                        <p class="result_field">SIRET : {{company.siret}}</p>
+                        <p>cords : {{company.lat}},{{company.lng}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </li>
+    </ol>
+    {% if corpos | length == 0 %}
+    <div class="result">
+        <p class="company_name">No companies found matching your criteria.</p>
+    </div>
+    {% endif %}
+    <script src="/static/script.js"></script>
+</body>
+
+
+</html>

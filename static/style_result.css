@@ -1,0 +1,32 @@
+    .result {
+        height: fit-content;
+        background-color: yellow;
+        width: 80vw;
+        margin: 10px;
+    }
+
+    .result-flx {
+        display: flex;
+        flex-direction: row;
+        height: max-content;
+        justify-content: space-evenly;
+        height: 100%;
+    }
+
+    .company_name {
+        text-align: center;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .result-left {
+        flex: 0 0 50%;
+        height: 100%;
+        background-color: aqua;
+    }
+
+    .result-right {
+        flex: 0 0 50%;
+        height: 100%;
+        background-color: blueviolet;
+    }
