@@ -1,3 +1,4 @@
+print("NAF  codes imported")
 naf_codes_dict = {
 "01.11Y" : "Culture de céréales, à l’exception du riz, de légumineuses et de graines oléagineuses",
 "01.12Y" : "Culture du riz",

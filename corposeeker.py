@@ -8,6 +8,11 @@ from flask import request
 import duckdb
 import pandas
 
+#local modules
+from dict_naf_code_to_name import naf_codes_dict
+from trenche_efectif_codes import tecodes
+
+
 """
 what i can get :
 
@@ -109,6 +114,15 @@ def search():
     print(sql_query)
     corpos = duckdb.sql(sql_query).df().to_dict('records')
     if corpos :
+        for corpo in corpos :
+            corpo["trancheEffectifsEtablissement"] = tecodes[corpo["trancheEffectifsEtablissement"]]
+            try :
+                corpo["main_acctivity"] = naf_codes_dict[corpo["activitePrincipaleNAF25Etablissement"]]
+            except :
+                try :
+                    corpo["main_acctivity"] = naf_codes_dict[corpo["activitePrincipaleEtablissement"]]
+                except :
+                    corpo["main_acctivity"] = "name not found, go google the NAF code bro"
         print(corpos[0])
     return render_template('index.html', amount=len(corpos), corpos=corpos)
 

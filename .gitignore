@@ -2,6 +2,8 @@ stockFiles/*.parquet
 buffer
 duckdb
 flask
-personal_notes/
+personal_notes/buffer
+personal_notes/prety_json_sample
 scripts_tools_and_byproducts/tests/
 scripts_tools_and_byproducts/byproducts/
+__pycache__/

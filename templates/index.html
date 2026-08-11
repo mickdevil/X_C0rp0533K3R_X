@@ -186,6 +186,7 @@
                 <div class="result-flx">
 
                     <div class="result-left">
+                        <p class="result_field">acctivity : {{ company.main_acctivity }}</p>
                         <p class="result_field">NAF25 : {{ company.activitePrincipaleEtablissement }}</p>
                         <p class="result_field">NAF OLD : {{ company.activitePrincipaleNAF25Etablissement }}</p>
                         <p class="result_field">number of emplyes : {{ company.trancheEffectifsEtablissement }}</p>
@@ -198,7 +199,7 @@
                         <p class="result_field">IS HQ : {{ company.etablissementSiege }}</p>
                         <p class="result_field">SIREN : {{company.siren}}</p>
                         <p class="result_field">SIRET : {{company.siret}}</p>
-                        <p>cords : {{company.lat}},{{company.lng}}</p>
+                        <a href="https://www.google.com/maps?q={{ company.lat }},{{ company.lng }}" target="_blank">cords : {{company.lat}},{{company.lng}}</a>
                     </div>
                 </div>
             </div>
@@ -206,7 +207,7 @@
         </li>
     </ol>
     {% if corpos | length == 0 %}
-    <div class="result">
+    <div class=" result">
         <p class="company_name">No companies found matching your criteria.</p>
     </div>
     {% endif %}

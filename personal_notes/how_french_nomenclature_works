@@ -1,0 +1,87 @@
+
+SIREN number :
+Système d'Identification du Répertoire des ENtreprises
+is 9 digits long
+this number define the legal entity of the company, there is always only one legal entity
+
+
+SIRET number :
+Système d'Identification du Répertoire des ÉTablissements
+is 14 digits long
+this number define one of the physical incarnation of the legal entity, like one wearhouse, or one selling point
+this number is unique per phisical entity
+the SIRET is defined as SIREN + NIC (Numéro Interne de Classement) 5 digits
+
+NIC number :
+is 5 digits long
+is used as a compliment to the SIREN to make the SIRET
+first 4 digits is the comune (location) code, the last one is a incrementing number for the count of entitys
+on NIC[4] overflow they use leters so it give total of 36 positions
+
+
+NAF code :
+Nomenclature d'Activités Française
+is 5 symbols long
+is a map of code to value of french profecional accivities
+the codes are always [0-9][0-9].[0-9][0-9][A-Z]
+the NAF[0-1] define the main category
+the NAF[2-3] define the case in a category, the category is like the class and the case is the specialization
+
+APE code :
+Activité Principale Exercée
+same as NAF
+
+
+
+trancheEffectifsEtablissement :
+is a 2 digits long code that define the amount of employes
+00	0 employees
+01	1 to 2 employees
+02	3 to 5 employees
+03	6 to 9 employees
+11	10 to 19 employees
+12	20 to 49 employees
+21	50 to 99 employees
+22	100 to 199 employees
+31	200 to 249 employees
+32	250 to 499 employees
+41	500 to 999 employees
+42	1,000 to 1,999 employees
+51	2,000 to 4,999 employees
+52	5,000 to 9,999 employees
+53	10,000 employees or more
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//the better NIC (not implemented in reality)
+NIC number :
+is 5 digits long
+is used as a compliment to the SIREN to make the SIRET
+first 4 digits is the comune (location) code, the last one is a incrementing number for the count of entitys
+on incrementing number overflow the NIC[3] increments  by one, it split comunes into small groups
+after NIC[3] also overflow the NIC[2] start to increment kinda grouping this smaller groups, and so on till 10⁵ combs
+//is okay system but might break
+
+
+
