@@ -115,7 +115,10 @@ def search():
     corpos = duckdb.sql(sql_query).df().to_dict('records')
     if corpos :
         for corpo in corpos :
-            corpo["trancheEffectifsEtablissement"] = tecodes[corpo["trancheEffectifsEtablissement"]]
+            try :
+                corpo["trancheEffectifsEtablissement"] = tecodes[corpo["trancheEffectifsEtablissement"]]
+            except :
+                ...
             try :
                 corpo["main_acctivity"] = naf_codes_dict[corpo["activitePrincipaleNAF25Etablissement"]]
             except :
