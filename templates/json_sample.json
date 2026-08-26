@@ -1,0 +1,22 @@
+[
+
+{% for company in corpos %}
+{
+"siren" : "{{company.siren}}",
+"siret" : "{{company.siret}}",
+"denominationUniteLegale" : "{{ company.denominationUniteLegale }}",
+"etatAdministratifEtablissement" : "{{ company.etatAdministratifEtablissement }}",
+"etablissementSiege" : "{{ company.etablissementSiege }}",
+"acctivity" : "{{ company.main_acctivity }}",
+"activitePrincipaleEtablissement" : "{{ company.activitePrincipaleEtablissement }}",
+"activitePrincipaleNAF25Etablissement" : "{{ company.activitePrincipaleNAF25Etablissement }}",
+"trancheEffectifsEtablissement" : "{{ company.trancheEffectifsEtablissement }}",
+"codePostalEtablissement" : "{{ company.codePostalEtablissement }}",
+"codeCommuneEtablissement" : "{{ company.codeCommuneEtablissement}}",
+"y_latitude" : "{{ company.lat }}",
+"x_longitude" : "{{ company.lng }}"
+},
+
+{% endfor %}
+
+]
