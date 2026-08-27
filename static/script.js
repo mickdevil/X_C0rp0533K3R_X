@@ -1,28 +1,41 @@
-document.getElementById("search_btn").addEventListener('click', async function (e) {
+document.getElementById("search_btn").addEventListener('click', async function(e) {
     e.preventDefault();
     const search_form = document.getElementById("search_form");
     const form_data = new FormData(search_form);
     const daReq = new URLSearchParams(form_data).toString();
-        try {
-        const response = await fetch('/td?' + daReq, {
+    try {
+        const response = await fetch('/search?' + daReq, {
             method: 'GET'
         });
 
         if (!response.ok) throw new Error('Request failed');
         const data = await response.json();
         corpos_root = document.getElementById("allDaCorposInDaArea");
-        corpos_root.inerHTML = '';
+        corpos_root.innerHTML = '';
         corpos_root.appendChild(mkCorposLst(data));
-    }
-    catch (error) {
+
+        try {
+            const amount = await fetch('/amount', {
+                method: 'GET'
+            });
+            //2 awits cause first get the headers in async and the other get the body, it's so cursed....
+            const count = await amount.json();
+            document.getElementById("amount").textContent = ("FOUND : " + count.count || "FOUND : 0");
+
+        } catch (error) {
+            console.error('Fetch error:', error);
+            console.log('Error at amount : ' + error.message);
+        }
+
+    } catch (error) {
         console.error('Fetch error:', error);
-        alert('Error: ' + error.message);
+        console.log('Error at data : ' + error.message);
     }
 })
 
 //results_lst_root the ol i use as root element
 
-function mkCorposLst(data){
+function mkCorposLst(data) {
     console.log(data);
     const fragment = document.createDocumentFragment();
 
@@ -31,7 +44,7 @@ function mkCorposLst(data){
         const res_div = document.createElement('div');
         res_div.className = "result";
         li.appendChild(res_div);
-        
+
         const name = document.createElement('p');
         name.className = "company_name";
         name.textContent = 'COMPANY NAME : ' + (corpo.denominationUniteLegale || 'no name for that corpo, fuck INSEE');
@@ -47,9 +60,9 @@ function mkCorposLst(data){
 
         const acctivity = document.createElement('p');
         acctivity.className = "result_field";
-        acctivity.textContent = 'acctivity : ' + corpo.main_acctivity;
+        acctivity.textContent = 'acctivity : ' + corpo.acctivity;
         res_div_lft.appendChild(acctivity);
-//////////
+        //////////
 
         const naf25 = document.createElement('p');
         naf25.className = "result_field";
@@ -83,7 +96,7 @@ function mkCorposLst(data){
 
         const is_active = document.createElement('p');
         is_active.className = "result_field";
-        is_active.textContent = 'IS ACTIVE : ' + (corpo.etatAdministratifEtablissement == 'A' ? 'YES' : 'NO'); 
+        is_active.textContent = 'IS ACTIVE : ' + (corpo.etatAdministratifEtablissement == 'A' ? 'YES' : 'NO');
         res_div_right.appendChild(is_active);
 
         const is_hq = document.createElement('p');
@@ -104,7 +117,7 @@ function mkCorposLst(data){
 
         const cords = document.createElement('a');
         cords.className = "result_field";
-        cords.href = "https://www.google.com/maps?q=" + corpo.lat + ',' + corpo.lng;
+        cords.href = "https://www.google.com/maps?q=" + corpo.lng + ',' + corpo.lat;
         cords.target = "_blank";
         cords.textContent = '' + corpo.lat + ',' + corpo.lng;
         res_div_right.appendChild(cords);

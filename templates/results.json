@@ -13,8 +13,8 @@
 "trancheEffectifsEtablissement" : "{{ company.trancheEffectifsEtablissement }}",
 "codePostalEtablissement" : "{{ company.codePostalEtablissement }}",
 "codeCommuneEtablissement" : "{{ company.codeCommuneEtablissement}}",
-"y_latitude" : "{{ company.lat }}",
-"x_longitude" : "{{ company.lng }}"
+"lng" : "{{ company.lat }}",
+"lat" : "{{ company.lng }}"
 }{% if not loop.last %},{% endif %}
 
 {% endfor %}
