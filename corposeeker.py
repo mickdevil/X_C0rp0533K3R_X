@@ -41,6 +41,8 @@ def td():
         SELECT \
         e.siren, \
         e.siret, \
+        u.prenom1UniteLegale, \
+        u.nomUniteLegale, \
         u.denominationUniteLegale, \
         e.etatAdministratifEtablissement, \
         e.etablissementSiege, \

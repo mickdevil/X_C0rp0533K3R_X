@@ -99,6 +99,13 @@ function mkCorposLst(data) {
         is_active.textContent = 'IS ACTIVE : ' + (corpo.etatAdministratifEtablissement == 'A' ? 'YES' : 'NO');
         res_div_right.appendChild(is_active);
 
+        const creatorInfo = document.createElement('p');
+        creatorInfo.className = "result_field";
+        creatorInfo.textContent = "creator Fname : " + (corpo.prenom1UniteLegale == "None" ? "N/A" : corpo.prenom1UniteLegale);
+        creatorInfo.textContent += " Lname : " + (corpo.nomUniteLegale == "None" ? "N/A" : corpo.nomUniteLegale);
+        res_div_right.appendChild(creatorInfo);
+
+
         const is_hq = document.createElement('p');
         is_hq.className = "result_field";
         is_hq.textContent = 'IS HQ : ' + corpo.etablissementSiege;
@@ -113,7 +120,6 @@ function mkCorposLst(data) {
         siret.className = "result_field";
         siret.textContent = 'SIRET :  ' + corpo.siret;
         res_div_right.appendChild(siret);
-
 
         const cords = document.createElement('a');
         cords.className = "result_field";

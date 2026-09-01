@@ -1,6 +1,7 @@
     .result {
         height: fit-content;
-        background-color: yellow;
+        background-color: #1c1b19;
+        border-radius: 8px;
         width: 80vw;
         margin: 10px;
     }
@@ -14,19 +15,20 @@
     }
 
     .company_name {
+        color: #e3dfd5;
         text-align: center;
         width: fit-content;
         margin: 0 auto;
     }
 
     .result-left {
-        flex: 0 0 50%;
-        height: 100%;
-        background-color: aqua;
+        color: #e3dfd5;
     }
 
     .result-right {
-        flex: 0 0 50%;
-        height: 100%;
-        background-color: blueviolet;
+        color: #e3dfd5;
+    }
+
+    a {
+        color: #e3dfd5;
     }

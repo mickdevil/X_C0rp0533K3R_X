@@ -4,6 +4,8 @@
 {
 "siren" : "{{company.siren}}",
 "siret" : "{{company.siret}}",
+"prenom1UniteLegale" : "{{company.prenom1UniteLegale}}",
+"nomUniteLegale" : "{{company.nomUniteLegale}}",    
 "denominationUniteLegale" : "{{ company.denominationUniteLegale }}",
 "etatAdministratifEtablissement" : "{{ company.etatAdministratifEtablissement }}",
 "etablissementSiege" : "{{ company.etablissementSiege }}",
